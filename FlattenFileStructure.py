@@ -1,5 +1,6 @@
 import os
 import shutil
+from time import time
 from collections import defaultdict
 
 DOT = "."
@@ -64,13 +65,17 @@ def handle_duplicate_file_name(file, file_count) -> str:
 def main() -> None:
     source_dir = input("Enter source directory path: ")
     destination_dir = input("Enter destination directory path: ")
+    start_time = time()
 
     if not os.path.exists(destination_dir):
         os.makedirs(destination_dir)
 
     file_count = defaultdict(int)  # keeps track of count of <fileName>.<fileExt> occurrences to rename duplicates
     flatten_directory(source_dir, destination_dir, file_count)
-    print("Flattening and copying complete.")
+
+    time_in_seconds = time() - start_time
+    time_in_minutes = time_in_seconds / 60
+    print(f"Flattening and copying complete. Total time taken: {time_in_seconds} seconds or {time_in_minutes} minutes")
 
 
 if __name__ == "__main__":
