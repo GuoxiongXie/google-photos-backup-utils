@@ -11,3 +11,7 @@ These can be fixed by changing the file extension to .JPEG, and the correspondin
 to .JPEG.json.
 These two files will need to be moved to a different directory to perform the re-overlay
 so that we don't need to overlay the original directory all over again (which might contains a lot of photos).
+
+## FileRenamingTool.py
+Sometimes when you move files to another folder, there might be duplicate file names. This util simply appends __avoid_dup to the end of file name (before file extension).
+It doesn't do any extra processing, just rename files.
