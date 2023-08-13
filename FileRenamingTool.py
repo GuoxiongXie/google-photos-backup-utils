@@ -2,16 +2,11 @@ import os
 from time import time
 
 """
-When overlaying datetime metadata to photos, I received a lot of errors like:
-Error: Not a valid HEIC (looks more like a JPEG) - ./IMG_0944.HEIC
-These can be fixed by changing the file extension to .JPEG, and the corresponding metadata file
-to .JPEG.json.
-These two files will need to be moved to a different directory to perform the re-overlay
-so that we don't need to overlay the original directory all over again (which might contains a lot of photos).
+Some photo service has character limits in file name and rejects long names.
+The purpose of this util is to use a random int generator 
+that's > # of files in directory to avoid dup and generate a relatively short name. 
+File names will be changed in place.
 """
-
-TARGET_EXTENSION = "JPEG"
-FILES_TO_CHANGE = {}
 
 def main() -> None:
     directory = input("Enter source directory path (files will be renamed in place): ")
