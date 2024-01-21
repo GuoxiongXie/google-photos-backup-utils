@@ -14,7 +14,8 @@ i.e. file.name.extension will be renamed to randomNumber.extension
 If there's duplicate with the randomly generated name, append __{count} to the end of file name (before extension)
 """
 
-DIR_SIZE = 10_000 # better use a number >>> # of files in directory
+DIR_SIZE = 999_999_999_999 # better use a number >>> # of files in directory
+MAX_FILE_NAME_LENGTH = 12 # only rename when existing file name length exceeds a limit. IMG_20230214 has limit of 12.
 
 def main() -> None:
     directory = input("Enter source directory path (files will be renamed in place): ")
@@ -23,6 +24,9 @@ def main() -> None:
 
     for file in os.listdir(directory):
         source_file_name, extension = os.path.splitext(file)
+        if len(source_file_name) <= MAX_FILE_NAME_LENGTH:
+            continue
+
         randomized_file_name = floor(random() * DIR_SIZE)
         while randomized_file_name in seen_before:  # keep generating random name until it hasn't seen before
             randomized_file_name = floor(random() * DIR_SIZE)
